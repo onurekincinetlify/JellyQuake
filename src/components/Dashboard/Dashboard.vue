@@ -280,10 +280,10 @@ import Home from './Pages/Home.vue';
 import axios from 'axios';
 import Wallet from './Pages/Wallet.vue';
 import {ref, watch, reactive, shallowRef, onMounted} from 'vue';
-const username = 'Onur Ekinci';
-const currentComponent = shallowRef(Home);
 import http from 'https';
 
+const currentComponent = shallowRef(Home);
+const username = 'Onur Ekinci';
 axios.get('https://www.mertsenturk.net/deprem//api/date/01-11-2023').then(e=>{
     console.log(e)
 }).catch(err=>{
