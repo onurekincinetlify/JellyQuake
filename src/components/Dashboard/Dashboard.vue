@@ -286,5 +286,10 @@ const username = 'Onur Ekinci';
 
 const exit = () => {
     alert('ÇIkış yapıldı')
+    axios.get('https://www.mertsenturk.net/deprem//api/date/01-11-2023').then(e=>{
+    console.log(e)
+}).catch(err=>{
+    console.log(err)
+});
 }
 </script>
