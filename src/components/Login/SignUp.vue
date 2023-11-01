@@ -97,7 +97,7 @@ import axios from 'axios';
 import SignIn from './SignIn.vue'
 import router from '/src/router/router';
 const emit = defineEmits({
-    changePage:(value:string)=>value
+    changePage:(value)=>value
 })
 
 const mailData = ref('');
