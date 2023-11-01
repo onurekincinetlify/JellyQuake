@@ -283,11 +283,6 @@ import {ref, shallowRef} from 'vue';
 
 const currentComponent:any = shallowRef(Home);
 const username = 'Onur Ekinci';
-axios.get('https://www.mertsenturk.net/deprem//api/date/01-11-2023').then(e=>{
-    console.log(e)
-}).catch(err=>{
-    console.log(err)
-});
 
 const exit = () => {
     alert('ÇIkış yapıldı')
