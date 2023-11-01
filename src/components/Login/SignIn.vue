@@ -100,7 +100,7 @@ import axios from 'axios';
 import SignUp from './SignUp.vue';
 import router from '/src/router/router';
 const emit = defineEmits({
-    changePage:(value:string)=>value
+    changePage:(value)=>value
 })
 
 const username = ref('');
@@ -115,7 +115,7 @@ const done = () => {
             email: username.value,
             password: password.value,
             returnSecureToken: true
-        }).then((e:any) => {
+        }).then((e) => {
             console.log(e)
             if (e.status === 200) {
                 localStorage.setItem('userCookie', e.data.localId);
