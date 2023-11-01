@@ -279,8 +279,7 @@
 import Home from './Pages/Home.vue';
 import axios from 'axios';
 import Wallet from './Pages/Wallet.vue';
-import {ref, watch, reactive, shallowRef, onMounted} from 'vue';
-import http from 'https';
+import {ref, shallowRef} from 'vue';
 
 const currentComponent = shallowRef(Home);
 const username = 'Onur Ekinci';

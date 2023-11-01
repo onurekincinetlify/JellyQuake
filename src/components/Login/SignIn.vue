@@ -97,6 +97,7 @@ $color: white;
 <script lang="ts" setup>
 import { defineEmits, ref} from 'vue';
 import axios from 'axios';
+// @ts-ignore
 import SignUp from './SignUp.vue';
 import router from '/src/router/router';
 const emit = defineEmits({
