@@ -51,7 +51,7 @@
                     </ul>
                 </div>
                 <div class="menu-3">
-                    <button @click="depremVerisi" class="exitButton">Oturumu Kapat</button>
+                    <button @click="exit" class="exitButton">Oturumu Kapat</button>
                 </div>
             </div>
             <div class="right-screen">
