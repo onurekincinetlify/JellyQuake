@@ -94,7 +94,7 @@ $color: white;
 
 </style>
 
-<script setup>
+<script lang="ts" setup>
 import { defineEmits, ref} from 'vue';
 import axios from 'axios';
 import SignUp from './SignUp.vue';
