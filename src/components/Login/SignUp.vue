@@ -91,37 +91,45 @@ $color: white;
 </style>
 
 <script lang="ts" setup>
-import { defineEmits, ref} from 'vue';
+import { defineEmits, ref } from 'vue';
 import axios from 'axios';
 // @ts-ignore
-import SignIn from './SignIn.vue'
+import SignUp from './SignUp.vue';
 import router from '/src/router/router';
+
 const emit = defineEmits({
-    changePage:(value:string)=>value
-})
+changePage: (value: string) => value,
+});
 
-const mailData = ref('')
-const passwordData = ref('')
-
-
-const done = () => {
-axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCvWeJBNQUkQkaWcgCbXD6g3vcsJVAX8W0", {
-            email: mailData.value,
-            password: passwordData.value,
-            returnSecureToken: true
-        }).then((e:any) => {
-            console.log(e)
-            if (e.status === 200) {
-                emitEvent()
-            } else if (e.status === 400) {
-                router.push('/olmadı');
-            } else {
-                router.push('/olmadı');
-            };
-        });
-}
+const username = ref('');
+const password = ref('');
 
 const emitEvent = () => {
-    emit('changePage', SignIn)
+emit('changePage', SignUp);
+};
+
+const done = () => {
+axios
+.post(
+'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCvWeJBNQUkQkaWcgCbXD6g3vcsJVAX8W0',
+{
+email: username.value,
+password: password.value,
+returnSecureToken: true,
 }
+)
+.then((e) => {
+console.log(e);
+if (e.status === 200) {
+localStorage.setItem('userCookie', e.data.localId);
+localStorage.setItem('registered', e.data.registered);
+localStorage.setItem('email', e.data.email);
+router.push('/dashboard');
+} else if (e.status === 400) {
+router.push('/Login');
+} else {
+router.push('/Login');
+}
+});
+};
 </script>
