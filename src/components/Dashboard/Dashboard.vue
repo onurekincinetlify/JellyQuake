@@ -55,7 +55,9 @@
                 </div>
             </div>
             <div class="right-screen">
-                    <component :is="currentComponent" />
+                    <keep-alive>
+                        <component :is="currentComponent" />
+                    </keep-alive>
             </div>
         </div>
     </div>
@@ -285,11 +287,6 @@ const currentComponent:any = shallowRef(Home);
 const username = 'Onur Ekinci';
 
 const exit = () => {
-    alert('ÇIkış yapıldı')
-    axios.get('https://www.mertsenturk.net/deprem//api/date/01-11-2023').then(e=>{
-    console.log(e)
-}).catch(err=>{
-    console.log(err)
-});
+    
 }
 </script>
