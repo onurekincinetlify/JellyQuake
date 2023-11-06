@@ -119,8 +119,9 @@
 import axios from 'axios';
 axios.get('https://api.ipify.org').then((response) => {
         const ip = response.data;
-        axios.get(`http://ip-api.com/json/${ip}`).then(r=>{
-            alert("Şuan "+r.data.city+"'da yaşıyorsun zeynep ekinci <3")
+        axios.get(`https://ipinfo.io/${ip}?token=55a17666a372fa`).then(r=>{
+            console.log(r)
+            alert("Şuan "+r.data.region+"'da yaşıyorsun zeynep ekinci <3")
         })
       })
 
