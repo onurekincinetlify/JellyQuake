@@ -47,35 +47,6 @@
             </tbody>
         </table>  
         </div>
-
-        <!-- <div class="box-2">
-            <table class="table">
-            <thead>
-                <tr>
-                    <th>Tarih</th>
-                    <th>Düzeltilen Hata Sayısı</th>
-                    <th>Verisyon</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>2023.12.11</th>
-                    <td>27</td>
-                    <td>1.2</td>
-                </tr>
-                <tr>
-                    <th>2023.11.06</th>
-                    <td>15</td>
-                    <td>1.1</td>
-                </tr>
-                <tr>
-                    <th>2023.10.14</th>
-                    <td>42</td>
-                    <td>1.0</td>
-                </tr>
-            </tbody>
-        </table>  
-        </div> -->
         </div>
     </div>
 </template>
@@ -87,13 +58,13 @@
 }
 .box-1{
     flex: 1;
-    margin: 0px 0px 0px 4%;
+    margin: 0px 4% 0px 4%;
     border-radius: 20px;
     margin-top: 50px;
     table{
         font-size: 15px;
         border-radius: 10px;
-        width: 450px;
+        width: 100%;
         background: #473080;
         a{
             color:#D1D3D4;
@@ -110,41 +81,76 @@
         }
     }
 }
-.box-2{
-    flex: 1;
-    max-width: 300px;
-    margin-top: 50px;
-    margin-right: 4%;
-    height: 244px;
-    border-radius: 20px;
-    table{
-        font-size: 15px;
-        border-radius: 10px;
-        width: 296.5px;
-        height: 244px;
-        background: #473080;
-        a{
-            color:#D1D3D4;
-        }
-        color:#D1D3D4;
-        tr{
-            th{
-            color:#D1D3D4;
-            border-color: black;
-        }
-        td{
-            border-color: black;
-        }
-        }
-    }
-}
-.column-1{
-    display: flex;
-}
+// .box-2{
+//     flex: 1;
+//     max-width: 300px;
+//     margin-top: 50px;
+//     margin-right: 4%;
+//     height: 244px;
+//     border-radius: 20px;
+//     table{
+//         font-size: 15px;
+//         border-radius: 10px;
+//         width: 296.5px;
+//         height: 244px;
+//         background: #473080;
+//         a{
+//             color:#D1D3D4;
+//         }
+//         color:#D1D3D4;
+//         tr{
+//             th{
+//             color:#D1D3D4;
+//             border-color: black;
+//         }
+//         td{
+//             border-color: black;
+//         }
+//         }
+//     }
+// }
+// .column-1{
+//     display: flex;
+// }
 
 </style>
 
 <script lang="ts" setup>
+
+if ("geolocation" in navigator) {
+  // Konum bilgilerini iste
+  navigator.geolocation.getCurrentPosition(function(position) {
+    const latitude = position.coords.latitude; // Enlem
+    const longitude = position.coords.longitude; // Boylam
+
+    // Ters jeokodlama yapmak için bir harita hizmeti veya API kullanabilirsiniz.
+    // Örnek olarak, OpenCage Geocoder API kullanımı:
+    const apiKey = "8f0ef856b7ba49748396d1832e6f7473"; // OpenCage API anahtarınızı buraya ekleyin
+    const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.results.length > 0) {
+          const city = data.results[0].components.city;
+          console.log("Şehir: " + city);
+          alert("Enlem Bilgisi : "+latitude)
+          alert("Boylam Bilgisi : "+longitude)
+          alert("Şuan "+city+"'da yaşıyorsun")
+        } else {
+          console.error("Şehir bilgisi alınamadı.");
+        }
+      })
+      .catch(error => {
+        console.error("Hata: " + error.message);
+      });
+  }, function(error) {
+    console.error("Konum bilgisi alınamadı. Hata kodu: " + error.code);
+  });
+} else {
+  console.error("Tarayıcınız konum bilgisi desteği sunmuyor.");
+}
+
 
 function EarthQuake(){
     fetch('https://api.orhanaydogdu.com.tr/deprem/kandilli/live?limit=3')

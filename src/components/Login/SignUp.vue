@@ -22,6 +22,10 @@
 </template>
 
 <style lang="scss" scoped>
+@font-face {
+    font-family: modernify;
+    src: url(/public/fonts/Noyh-Regular.ttf);
+}
 $color: white;
 .entrie-container{
     width: 100%;
