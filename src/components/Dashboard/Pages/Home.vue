@@ -144,7 +144,7 @@
 
 </style>
 
-<script lang="js" setup>
+<script lang="ts" setup>
 
 function EarthQuake(){
     fetch('https://api.orhanaydogdu.com.tr/deprem/kandilli/live?limit=3')
@@ -152,13 +152,31 @@ function EarthQuake(){
   .then(json => {
     const results = json.result;
     for (let i = 0; i < 3; i++) {
-      document.getElementById(`Tarih-${i + 1}`).innerHTML = results[i].date.split(" ")[0];
-      document.getElementById(`Saat-${i + 1}`).innerHTML = results[i].date.split(" ")[1];
-      document.getElementById(`Enlem-${i + 1}`).innerHTML = results[i].geojson.coordinates[1];
-      document.getElementById(`Boylam-${i + 1}`).innerHTML = results[i].geojson.coordinates[0];
-      document.getElementById(`Derinlik-${i + 1}`).innerHTML = results[i].depth;
-      document.getElementById(`ML-${i + 1}`).innerHTML = results[i].mag;
-      document.getElementById(`Yer-${i + 1}`).innerHTML = results[i].title;
+      const tarihElement = document.getElementById(`Tarih-${i + 1}`);
+      const saatElement = document.getElementById(`Saat-${i + 1}`);
+      const enlemElement = document.getElementById(`Enlem-${i + 1}`);
+      const boylamElement = document.getElementById(`Boylam-${i + 1}`);
+      const derinlikElement = document.getElementById(`Derinlik-${i + 1}`);
+      const mlElement = document.getElementById(`ML-${i + 1}`);
+      const yerElement = document.getElementById(`Yer-${i + 1}`);
+
+      if (
+        tarihElement &&
+        saatElement &&
+        enlemElement &&
+        boylamElement &&
+        derinlikElement &&
+        mlElement &&
+        yerElement
+      ) {
+        tarihElement.innerHTML = results[i].date.split(" ")[0];
+        saatElement.innerHTML = results[i].date.split(" ")[1];
+        enlemElement.innerHTML = results[i].geojson.coordinates[1];
+        boylamElement.innerHTML = results[i].geojson.coordinates[0];
+        derinlikElement.innerHTML = results[i].depth;
+        mlElement.innerHTML = results[i].mag;
+        yerElement.innerHTML = results[i].title;
+      }
     }
   });
 }
