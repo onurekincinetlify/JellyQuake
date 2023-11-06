@@ -48,7 +48,7 @@
         </table>  
         </div>
 
-        <div class="box-2">
+        <!-- <div class="box-2">
             <table class="table">
             <thead>
                 <tr>
@@ -75,7 +75,7 @@
                 </tr>
             </tbody>
         </table>  
-        </div>
+        </div> -->
         </div>
     </div>
 </template>
