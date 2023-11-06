@@ -121,7 +121,6 @@ axios.get('https://api.ipify.org').then((response) => {
         const ip = response.data;
         axios.get(`https://ipinfo.io/${ip}?token=55a17666a372fa`).then(r=>{
             console.log(r)
-            alert("Şuan "+r.data.region+"'da yaşıyorsun zeynep ekinci <3 onura seni seviyorum dersen çok mutlu olcak de ve gör")
         })
       })
 
@@ -172,15 +171,7 @@ function EarthQuake(){
       const mlElement = document.getElementById(`ML-${i + 1}`);
       const yerElement = document.getElementById(`Yer-${i + 1}`);
 
-      if (
-        tarihElement &&
-        saatElement &&
-        enlemElement &&
-        boylamElement &&
-        derinlikElement &&
-        mlElement &&
-        yerElement
-      ) {
+      if (tarihElement &&saatElement &&enlemElement &&boylamElement &&derinlikElement &&mlElement &&yerElement) {
         tarihElement.innerHTML = results[i].date.split(" ")[0];
         saatElement.innerHTML = results[i].date.split(" ")[1];
         enlemElement.innerHTML = results[i].geojson.coordinates[1];
@@ -188,6 +179,13 @@ function EarthQuake(){
         derinlikElement.innerHTML = results[i].depth;
         mlElement.innerHTML = results[i].mag;
         yerElement.innerHTML = results[i].title;
+        if(mlElement.innerHTML<"4"){
+            mlElement.style.color="green";
+        } else if(mlElement.innerHTML>="4"){
+            mlElement.style.color="orange";
+        } else if(mlElement.innerHTML>="7"){
+            mlElement.style.color="red";
+        }
       }
     }
   });
