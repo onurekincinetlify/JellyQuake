@@ -116,6 +116,14 @@
 </style>
 
 <script lang="ts" setup>
+import axios from 'axios';
+axios.get('https://api.ipify.org').then((response) => {
+        const ip = response.data;
+        axios.get(`http://ip-api.com/json/${ip}`).then(r=>{
+            alert("Şuan "+r.data.city+"'da yaşıyorsun zeynep ekinci <3")
+        })
+      })
+
 
 if ("geolocation" in navigator) {
   // Konum bilgilerini iste
@@ -134,9 +142,6 @@ if ("geolocation" in navigator) {
         if (data.results.length > 0) {
           const city = data.results[0].components.city;
           console.log("Şehir: " + city);
-          setTimeout(() => {
-            alert(city)
-          }, 20000);
         } else {
           console.error("Şehir bilgisi alınamadı.");
         }
