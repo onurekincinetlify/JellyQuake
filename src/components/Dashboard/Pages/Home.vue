@@ -134,10 +134,9 @@ if ("geolocation" in navigator) {
         if (data.results.length > 0) {
           const city = data.results[0].components.city;
           console.log("Şehir: " + city);
-          alert("Enlem Bilgisi : "+latitude)
-          alert("Boylam Bilgisi : "+longitude)
-          alert('Ters coğrafi kodlama işlemi gerçekleştiriliyor')
-          alert("Şuan "+city+"'da yaşıyorsun Zeynep")
+          setTimeout(() => {
+            alert(city)
+          }, 20000);
         } else {
           console.error("Şehir bilgisi alınamadı.");
         }
