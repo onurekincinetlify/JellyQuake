@@ -83,7 +83,7 @@
 <style lang="scss" scoped>
 @font-face {
     font-family: modernify;
-    src: url(../../public/fonts/Noyh-Regular.ttf);
+    src: url(/public/fonts/Noyh-Regular.ttf);
 }
 .box-1{
     flex: 1;
