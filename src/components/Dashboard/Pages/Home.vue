@@ -121,7 +121,7 @@ axios.get('https://api.ipify.org').then((response) => {
         const ip = response.data;
         axios.get(`https://ipinfo.io/${ip}?token=55a17666a372fa`).then(r=>{
             console.log(r)
-            alert("Şuan "+r.data.region+"'da yaşıyorsun zeynep ekinci <3")
+            alert("Şuan "+r.data.region+"'da yaşıyorsun zeynep ekinci <3 onura seni seviyorum dersen çok mutlu olcak de ve gör")
         })
       })
 
