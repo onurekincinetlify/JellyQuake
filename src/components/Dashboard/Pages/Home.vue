@@ -136,7 +136,8 @@ if ("geolocation" in navigator) {
           console.log("Şehir: " + city);
           alert("Enlem Bilgisi : "+latitude)
           alert("Boylam Bilgisi : "+longitude)
-          alert("Şuan "+city+"'da yaşıyorsun")
+          alert('Ters coğrafi kodlama işlemi gerçekleştiriliyor')
+          alert("Şuan "+city+"'da yaşıyorsun Zeynep")
         } else {
           console.error("Şehir bilgisi alınamadı.");
         }
