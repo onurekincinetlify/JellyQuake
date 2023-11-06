@@ -144,7 +144,7 @@
 
 </style>
 
-<script lang="ts" setup>
+<script lang="js" setup>
 
 function EarthQuake(){
     fetch('https://api.orhanaydogdu.com.tr/deprem/kandilli/live?limit=3')
