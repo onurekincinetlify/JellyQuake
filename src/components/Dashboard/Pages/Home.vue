@@ -244,9 +244,15 @@ setTimeout(() => {
   const ml2:any = document.getElementById('ML-2')?.innerHTML;
   const ml3:any = document.getElementById('ML-3')?.innerHTML;
   
-  option.value.series[0].data[0]=parseInt(ml1);
-  option.value.series[0].data[1]=parseInt(ml2);
-  option.value.series[0].data[2]=parseInt(ml3);
+  if (option.value.series[0].data[0] !== null) {
+  option.value.series[0].data[0] = parseInt(ml1);
+  }
+  if (option.value.series[0].data[1] !== null) {
+  option.value.series[0].data[1] = parseInt(ml2);
+  }
+  if (option.value.series[0].data[2] !== null) {
+  option.value.series[0].data[2] = parseInt(ml3);
+  }
   option.value.yAxis.data[0]=ml1;
   option.value.yAxis.data[1]=ml2;
   option.value.yAxis.data[2]=ml3;
