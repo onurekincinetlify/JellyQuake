@@ -48,6 +48,9 @@
         </table>  
         </div>
         </div>
+        <div class="column-2">
+            <v-chart :class="{show:isfill==true,dshow:isfill==false}" :key="keyValue" class="chart" :option="option" />
+        </div>
     </div>
 </template>
 
@@ -55,6 +58,17 @@
 @font-face {
     font-family: modernify;
     src: url(/public/fonts/Noyh-Regular.ttf);
+}
+.chart{
+  width: 500px;
+  height: 300px;
+  margin: 0px 0px 0px 20px;
+}
+.show{
+  display: block;
+}
+.dshow{
+  display: none;
 }
 .box-1{
     flex: 1;
@@ -116,7 +130,13 @@
 </style>
 
 <script lang="ts" setup>
+
+import VChart, { THEME_KEY } from "vue-echarts";
 import axios from 'axios';
+import {ref} from 'vue'
+const keyValue = ref(10);
+const isfill = ref(false)
+
 axios.get('https://api.ipify.org').then((response) => {
         const ip = response.data;
         axios.get(`https://ipinfo.io/${ip}?token=55a17666a372fa`).then(r=>{
@@ -124,6 +144,7 @@ axios.get('https://api.ipify.org').then((response) => {
         })
       })
 
+      
 
 if ("geolocation" in navigator) {
   // Konum bilgilerini iste
@@ -190,6 +211,54 @@ function EarthQuake(){
     }
   });
 }
+
+const option = ref({
+   xAxis: {
+    data: [null,null,null]
+    },
+  title: {
+    left: "center",
+    top: "center",
+    show: true,
+    textStyle: {
+      fontSize: 30
+    },
+    subtextStyle: {
+      fontSize: 20
+    }
+  },
+    yAxis: {
+    data: [null,null,null]
+  },
+  series: [
+    {
+      type: 'line',
+      data: [null,null,null]
+    }
+  ]
+
+});
+
+setTimeout(() => {
+  const ml1:any = document.getElementById('ML-1')?.innerHTML;
+  const ml2:any = document.getElementById('ML-2')?.innerHTML;
+  const ml3:any = document.getElementById('ML-3')?.innerHTML;
+  
+  option.value.series[0].data[0]=parseInt(ml1);
+  option.value.series[0].data[1]=parseInt(ml2);
+  option.value.series[0].data[2]=parseInt(ml3);
+  option.value.yAxis.data[0]=ml1;
+  option.value.yAxis.data[1]=ml2;
+  option.value.yAxis.data[2]=ml3;
+  option.value.xAxis.data[0]=ml1;
+  option.value.xAxis.data[1]=ml2;
+  option.value.xAxis.data[2]=ml3;
+  if(option.value.series[0].data[0]===null){
+  isfill.value = false;
+} else {
+  isfill.value = true;
+}
+}, 1000);
 
 function baslangicFonksiyonu() {
   EarthQuake()
